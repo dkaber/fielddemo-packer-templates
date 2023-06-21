@@ -1,201 +1,6 @@
 {
     "builders": [{
-            "name": "CentOS7",
-            "CPUs": "2",
-            "RAM": "2048",
-            "RAM_reserve_all": true,
-            "boot_command": [
-                "<up><wait><tab><wait> text ks={{user `http_server`}}/centos7.cfg<enter><wait>"
-            ],
-            "boot_order": "disk,cdrom",
-            "cluster": "{{user `vcenter_cluster`}}",
-            "convert_to_template": "true",
-            "create_snapshot": "false",
-            "datastore": "{{user `vcenter_datastore`}}",
-            "disk_controller_type": "pvscsi",
-            "folder": "{{user `vcenter_folder`}}",
-            "guest_os_type": "centos7_64Guest",
-            "host": "{{user `vcenter_host`}}",
-            "insecure_connection": "true",
-            "iso_checksum": "sha256:{{user `centos7_checksum`}}",
-            "iso_paths": [
-                "{{user `centos7_iso`}}"
-            ],
-            "network_adapters": [{
-                "network": "{{user `vcenter_network`}}",
-                "network_card": "vmxnet3"
-            }],
-            "notes": "Default SSH User: {{user `ssh_username`}}\nDefault SSH Pass: {{user `ssh_password`}}\nBuilt by Packer @ {{isotime \"2006-01-02 03:04\"}}.",
-            "password": "{{user `vcenter_password`}}",
-            "remove_cdrom": true,
-            "shutdown_command": "echo '{{user `ssh_password`}}' | sudo -S -E shutdown -P now",
-            "ssh_password": "{{user `ssh_password`}}",
-            "ssh_username": "{{user `ssh_username`}}",
-            "storage": [{
-                "disk_size": "20480",
-                "disk_thin_provisioned": true
-            }],
-            "type": "vsphere-iso",
-            "username": "{{user `vcenter_username`}}",
-            "vcenter_server": "{{user `vcenter_server`}}",
-            "vm_name": "{{user `centos7_vm_name`}}-{{user `buildtime`}}"
-        },
-        {
-            "name": "CentOS8",
-            "CPUs": "2",
-            "RAM": "2048",
-            "RAM_reserve_all": false,
-            "boot_command": [
-                "<up><wait><tab><wait> text ks={{user `http_server`}}/centos8.cfg<enter><wait>"
-            ],
-            "boot_order": "disk,cdrom",
-            "cluster": "{{user `vcenter_cluster`}}",
-            "convert_to_template": "true",
-            "create_snapshot": "false",
-            "datastore": "{{user `vcenter_datastore`}}",
-            "disk_controller_type": "pvscsi",
-            "folder": "{{user `vcenter_folder`}}",
-            "guest_os_type": "centos8_64Guest",
-            "host": "{{user `vcenter_host`}}",
-            "insecure_connection": "true",
-            "iso_checksum": "sha256:{{user `centos8_checksum`}}",
-            "iso_paths": [
-                "{{user `centos8_iso`}}"
-            ],
-            "network_adapters": [{
-                "network": "{{user `vcenter_network`}}",
-                "network_card": "vmxnet3"
-            }],
-            "notes": "Default SSH User: {{user `ssh_username`}}\nDefault SSH Pass: {{user `ssh_password`}}\nBuilt by Packer @ {{isotime \"2006-01-02 03:04\"}}.",
-            "password": "{{user `vcenter_password`}}",
-            "remove_cdrom": "true",
-            "shutdown_command": "echo '{{user `ssh_password`}}' | sudo -S -E shutdown -P now",
-            "ssh_password": "{{ user `ssh_password` }}",
-            "ssh_username": "{{ user `ssh_username` }}",
-            "storage": [{
-                "disk_size": "20480",
-                "disk_thin_provisioned": true
-            }],
-            "type": "vsphere-iso",
-            "username": "{{user `vcenter_username`}}",
-            "vcenter_server": "{{user `vcenter_server`}}",
-            "vm_name": "{{ user `centos8_vm_name` }}-{{user `buildtime`}}"
-        },
-        {
-            "name": "Ubuntu1804",
-            "CPUs": "2",
-            "RAM": "2048",
-            "RAM_reserve_all": true,
-            "boot_command": [
-                "<enter><wait><f6><wait><esc><wait>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-                "<bs><bs><bs>",
-                "/install/vmlinuz",
-                " initrd=/install/initrd.gz",
-                " priority=critical",
-                " locale=en_US",
-                " preseed/url={{user `http_server`}}/ubuntu18.cfg<wait>",
-                "<enter>"
-            ],
-            "boot_order": "disk,cdrom",
-            "cluster": "{{user `vcenter_cluster`}}",
-            "convert_to_template": "true",
-            "create_snapshot": "false",
-            "datastore": "{{user `vcenter_datastore`}}",
-            "disk_controller_type": "pvscsi",
-            "folder": "{{user `vcenter_folder`}}",
-            "guest_os_type": "ubuntu64Guest",
-            "host": "{{user `vcenter_host`}}",
-            "insecure_connection": "true",
-            "iso_checksum": "sha256:{{user `ubuntu1804_checksum`}}",
-            "iso_paths": [
-                "{{user `ubuntu1804_iso`}}"
-            ],
-            "network_adapters": [{
-                "network": "{{user `vcenter_network`}}",
-                "network_card": "vmxnet3"
-            }],
-            "notes": "Default SSH User: {{user `ssh_username`}}\nDefault SSH Pass: {{user `ssh_password`}}\nBuilt by Packer @ {{isotime \"2006-01-02 03:04\"}}.",
-            "password": "{{user `vcenter_password`}}",
-            "remove_cdrom": false,
-            "ssh_password": "{{user `ssh_password`}}",
-            "ssh_username": "{{user `ssh_username`}}",
-            "storage": [{
-                "disk_size": "20480",
-                "disk_thin_provisioned": true
-            }],
-            "type": "vsphere-iso",
-            "username": "{{user `vcenter_username`}}",
-            "vcenter_server": "{{user `vcenter_server`}}",
-            "vm_name": "{{user `ubuntu1804_vm_name`}}-{{user `buildtime`}}"
-        },
-        {
-            "name": "Ubuntu1910",
-            "CPUs": "2",
-            "RAM": "2048",
-            "RAM_reserve_all": true,
-            "boot_command": [
-                "<esc><wait>",
-                "<esc><wait>",
-                "<enter><wait>",
-                "/install/vmlinuz",
-                " initrd=/install/initrd.gz ",
-                "auto=true ",
-                "url={{user `http_server`}}/ubuntu19.cfg ",
-                "fb=false ",
-                "auto=true ",
-                "language=en ",
-                "locale=en_US ",
-                "priority=critical ",
-                "keymap=us ",
-                "netcfg/get_hostname=ubuntu1910 ",
-                "netcfg/get_domain=vm ",
-                "debconf/frontend=noninteractive ",
-                "console-setup/ask_detect=false ",
-                "console-keymaps-at/keymap=us ",
-                "<enter>"
-            ],
-            "boot_order": "disk,cdrom",
-            "boot_wait": "10s",
-            "cluster": "{{user `vcenter_cluster`}}",
-            "convert_to_template": "true",
-            "create_snapshot": "false",
-            "datastore": "{{user `vcenter_datastore`}}",
-            "disk_controller_type": "pvscsi",
-            "folder": "{{user `vcenter_folder`}}",
-            "guest_os_type": "ubuntu64Guest",
-            "host": "{{user `vcenter_host`}}",
-            "insecure_connection": "true",
-            "iso_paths": [
-                "{{user `ubuntu1910_iso`}}"
-            ],
-            "network_adapters": [{
-                "network": "{{user `vcenter_network`}}",
-                "network_card": "vmxnet3"
-            }],
-            "notes": "Default SSH User: {{user `ssh_username`}}\nDefault SSH Pass: {{user `ssh_password`}}\nBuilt by Packer @ {{isotime \"2006-01-02 03:04\"}}.",
-            "password": "{{user `vcenter_password`}}",
-            "remove_cdrom": true,
-            "ssh_password": "{{user `ssh_password`}}",
-            "ssh_username": "{{user `ssh_username`}}",
-            "storage": [{
-                "disk_size": "20480",
-                "disk_thin_provisioned": true
-            }],
-            "type": "vsphere-iso",
-            "username": "{{user `vcenter_username`}}",
-            "vcenter_server": "{{user `vcenter_server`}}",
-            "vm_name": "{{user `ubuntu1910_vm_name`}}-{{user `buildtime`}}"
-        },
-        {
-            "name": "Ubuntu2004",
+            "name": "Ubuntu2204",
             "CPUs": "2",
             "RAM": "2048",
             "RAM_reserve_all": true,
@@ -214,9 +19,9 @@
             "guest_os_type": "ubuntu64Guest",
             "host": "{{user `vcenter_host`}}",
             "insecure_connection": "true",
-            "iso_checksum": "sha256:{{user `ubuntu2004_checksum`}}",
+            "iso_checksum": "sha256:{{user `ubuntu2204_checksum`}}",
             "iso_paths": [
-                "{{user `ubuntu2004_iso`}}"
+                "{{user `ubuntu2204_iso`}}"
             ],
             "network_adapters": [{
                 "network": "{{user `vcenter_network`}}",
@@ -235,7 +40,7 @@
             "type": "vsphere-iso",
             "username": "{{user `vcenter_username`}}",
             "vcenter_server": "{{user `vcenter_server`}}",
-            "vm_name": "{{user `ubuntu2004_vm_name`}}-{{user `buildtime`}}"
+            "vm_name": "{{user `ubuntu2204_vm_name`}}-{{user `buildtime`}}"
         },
         {
             "name": "Windows2016",
@@ -288,7 +93,7 @@
                 "CentOS8",
                 "Ubuntu1804",
                 "Ubuntu1910",
-                "Ubuntu2004"
+                "Ubuntu2204"
             ],
             "destination": "/tmp/id_rsa.pub",
             "source": "{{ template_dir }}/ssh/id_rsa.pub",
@@ -354,7 +159,7 @@
             "only": [
                 "Ubuntu1804",
                 "Ubuntu1910",
-                "Ubuntu2004"
+                "Ubuntu2204"
             ],
             "scripts": [
                 "{{ template_dir }}/scripts/ubuntu_template_cleanup.sh"

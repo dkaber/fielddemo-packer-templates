@@ -15,7 +15,7 @@
     "winrm_username": "Administrator",
     "winrm_password": "{{ env `SSHPASS`}}",
 
-    "http_server": "https://raw.githubusercontent.com/VMwareCMBUTMM/fielddemo-packer-templates/master/config",
+    "http_server": "https://github.com/dkaber/fielddemo-packer-templates/tree/master/config",
 
     "ubuntu2204_vm_name": "packer-ubuntu2204",
     "ubuntu2204_iso": "[datastore-01a] iso/ubuntu-22.04.2-live-server-amd64.iso",

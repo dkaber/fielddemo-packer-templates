@@ -18,11 +18,11 @@
     "http_server": "https://github.com/dkaber/fielddemo-packer-templates/tree/master/config",
 
     "ubuntu2204_vm_name": "packer-ubuntu2204",
-    "ubuntu2204_iso": "[datastore-01a] iso/ubuntu-22.04.2-live-server-amd64.iso",
-    "ubuntu2204_checksum": "5E38B55D57D94FF029719342357325ED3BDA38FA80054F9330DC789CD2D43931",
+    "ubuntu2204_iso": "{{ env `UBUNTUISOPATH`}}",
+    "ubuntu2204_checksum": "{{ env `UBUNTUISOCHECKSUM`}}",
 
     "windows_2016_vm_name": "packer-windows2016",
-    "windows_2016_iso": "[datastore-01a] iso/SERVER_EVAL_x64FRE_en-us.iso",
-    "windows_2016_checksum": "3E4FA6D8507B554856FC9CA6079CC402DF11A8B79344871669F0251535255325"
+    "windows_2016_iso": "{{ env `WINDOWSISOPATH`}}",
+    "windows_2016_checksum": "{{ env `WINDOWSISOCHECKSUM`}}"
 
 }

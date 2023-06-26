@@ -1,6 +1,3 @@
-mkdir -p ~/www
-cd ~/www
-cat > user-data << 'EOF'
 #cloud-config
 autoinstall:
   version: 1

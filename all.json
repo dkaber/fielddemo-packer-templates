@@ -85,11 +85,55 @@
                 "{{ template_dir }}/scripts/win2016.ps1"
             ],
             "remove_cdrom": "true"
+        },
+        {
+            "name": "Ubuntu2210",
+            "CPUs": "2",
+            "RAM": "2048",
+            "RAM_reserve_all": true,
+            "boot_command": [
+                "<enter><enter><f6><esc><wait> ",
+                "autoinstall ds=nocloud-net;s={{user `http_server`}}/ubuntu20/",
+                "<enter>"
+            ],
+            "boot_order": "disk,cdrom",
+            "cluster": "{{user `vcenter_cluster`}}",
+            "convert_to_template": "true",
+            "create_snapshot": "false",
+            "datastore": "{{user `vcenter_datastore`}}",
+            "disk_controller_type": "pvscsi",
+            "folder": "{{user `vcenter_folder`}}",
+            "guest_os_type": "ubuntu64Guest",
+            "host": "{{user `vcenter_host`}}",
+            "insecure_connection": "true",
+            "iso_checksum": "sha256:{{user `ubuntu2210_checksum`}}",
+            "iso_paths": [
+                "{{user `ubuntu2210_iso`}}"
+            ],
+            "network_adapters": [{
+                "network": "{{user `vcenter_network`}}",
+                "network_card": "vmxnet3"
+            }],
+            "notes": "Default SSH User: {{user `ssh_username`}}\nDefault SSH Pass: {{user `ssh_password`}}\nBuilt by Packer @ {{isotime \"2006-01-02 03:04\"}}.",
+            "password": "{{user `vcenter_password`}}",
+            "remove_cdrom": true,
+            "ssh_handshake_attempts": "20",
+            "ssh_password": "{{user `ssh_password`}}",
+            "ssh_username": "{{user `ssh_username`}}",
+            "storage": [{
+                "disk_size": "20480",
+                "disk_thin_provisioned": true
+            }],
+            "type": "vsphere-iso",
+            "username": "{{user `vcenter_username`}}",
+            "vcenter_server": "{{user `vcenter_server`}}",
+            "vm_name": "{{user `ubuntu2210_vm_name`}}-{{user `buildtime`}}"
         }
     ],
     "provisioners": [{
             "only": [
-                "Ubuntu2204"
+                "Ubuntu2204",
+                "Ubuntu2210"
             ],
             "destination": "/tmp/id_rsa.pub",
             "source": "{{ template_dir }}/ssh/id_rsa.pub",
@@ -98,7 +142,8 @@
         {
             "execute_command": "echo '{{user `ssh_password`}}' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
             "only": [
-                "Ubuntu2204"
+                "Ubuntu2204",
+                "Ubuntu2210"
             ],
             "scripts": [
                 "{{ template_dir }}/scripts/ubuntu_template_cleanup.sh"

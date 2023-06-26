@@ -21,6 +21,10 @@
     "ubuntu2204_iso": "{{ env `UBUNTUISOPATH`}}",
     "ubuntu2204_checksum": "{{ env `UBUNTUISOCHECKSUM`}}",
 
+    "ubuntu2210_vm_name": "packer-ubuntu2210",
+    "ubuntu2210_iso": "[datastore-01a] iso/ubuntu-22.10-live-server-amd64.iso",
+    "ubuntu2210_checksum": "874452797430a94ca240c95d8503035aa145bd03ef7d84f9b23b78f3c5099aed",
+
     "windows_2016_vm_name": "packer-windows2016",
     "windows_2016_iso": "{{ env `WINDOWSISOPATH`}}",
     "windows_2016_checksum": "{{ env `WINDOWSISOCHECKSUM`}}"

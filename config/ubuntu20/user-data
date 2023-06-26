@@ -4,10 +4,41 @@ cat > user-data << 'EOF'
 #cloud-config
 autoinstall:
   version: 1
+  apt:
+    disable_components: []
+    fallback: abort
+    geoip: true
+    mirror-selection:
+      primary:
+      - country-mirror
+      - arches:
+        - amd64
+        - i386
+        uri: http://archive.ubuntu.com/ubuntu
+      - arches:
+        - s390x
+        - arm64
+        - armhf
+        - powerpc
+        - ppc64el
+        - riscv64
+        uri: http://ports.ubuntu.com/ubuntu-ports
+    preserve_sources_list: false
+  codecs:
+    install: false
+  drivers:
+    install: false
   identity:
     hostname: ubuntu-server
     password: "$6$exDY1mhS4KUYCE/2$zmn9ToZwTKLhCw.b4/b.ZRTIZM30JZ4QrOQ2aOXJ8yk96xpcCof0kxKwuX1kqLG/ygbJ1f8wxED22bTL4F46P0"
     username: ubuntu
+  kernel:
+    package: linux-generic
+  keyboard:
+    layout: us
+    toggle: null
+    variant: ''
+  locale: en_US.UTF-8
   network:
     network:
       version: 2
@@ -18,5 +49,6 @@ autoinstall:
   ssh:
     allow-pw: true
     install-server: true
+  updates: security
 EOF
 touch meta-data

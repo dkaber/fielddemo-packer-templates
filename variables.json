@@ -15,7 +15,7 @@
     "winrm_username": "Administrator",
     "winrm_password": "{{ env `SSHPASS`}}",
 
-    "http_server": "https://github.com/dkaber/fielddemo-packer-templates/tree/master/config",
+    "http_server": "http://192.168.70.1",
 
     "ubuntu2204_vm_name": "packer-ubuntu2204",
     "ubuntu2204_iso": "{{ env `UBUNTUISOPATH`}}",

@@ -5,8 +5,12 @@
             "RAM": "2048",
             "RAM_reserve_all": true,
             "boot_command": [
-                "<enter><enter><f6><esc><wait> ",
-                "autoinstall ds=nocloud-net;s={{user `http_server`}}/ubuntu20/",
+                "c<wait>",
+                "linux /casper/vmlinuz autoinstall --- ds='nocloud-net;s={{user `http_server`}}/ubuntu20/'",
+                "<enter><wait>",
+                "initrd /casper/initrd",
+                "<enter><wait>",
+                "boot",
                 "<enter>"
             ],
             "boot_order": "disk,cdrom",
@@ -31,6 +35,7 @@
             "password": "{{user `vcenter_password`}}",
             "remove_cdrom": true,
             "ssh_handshake_attempts": "20",
+            "ssh_timeout": "40m",
             "ssh_password": "{{user `ssh_password`}}",
             "ssh_username": "{{user `ssh_username`}}",
             "storage": [{

@@ -34,7 +34,7 @@
             "ssh_password": "{{user `ssh_password`}}",
             "ssh_username": "{{user `ssh_username`}}",
             "storage": [{
-                "disk_size": "20480",
+                "disk_size": "40960",
                 "disk_thin_provisioned": true
             }],
             "type": "vsphere-iso",
@@ -93,7 +93,7 @@
             "RAM_reserve_all": true,
             "boot_command": [
                 "c<wait> ",
-                "linux /casper/vmlinuz --- autoinstall ds=nocloud-net;s={{user `http_server`}}/ubuntu20/",
+                "linux /casper/vmlinuz --- autoinstall ds='nocloud-net;s={{user `http_server`}}/ubuntu20/'",
                 "<enter><wait>",
                 "initrd /casper/initrd",
                 "<enter><wait>",
@@ -122,6 +122,7 @@
             "password": "{{user `vcenter_password`}}",
             "remove_cdrom": true,
             "ssh_handshake_attempts": "20",
+            "ssh_timeout": "40m",
             "ssh_password": "{{user `ssh_password`}}",
             "ssh_username": "{{user `ssh_username`}}",
             "storage": [{
@@ -136,7 +137,6 @@
     ],
     "provisioners": [{
             "only": [
-                "Ubuntu2204",
                 "Ubuntu2210"
             ],
             "destination": "/tmp/id_rsa.pub",
@@ -146,7 +146,6 @@
         {
             "execute_command": "echo '{{user `ssh_password`}}' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
             "only": [
-                "Ubuntu2204",
                 "Ubuntu2210"
             ],
             "scripts": [

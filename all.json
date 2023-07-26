@@ -142,24 +142,6 @@
     ],
     "provisioners": [{
             "only": [
-                "Ubuntu2210"
-            ],
-            "destination": "/tmp/id_rsa.pub",
-            "source": "{{ template_dir }}/ssh/id_rsa.pub",
-            "type": "file"
-        },
-        {
-            "execute_command": "echo '{{user `ssh_password`}}' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
-            "only": [
-                "Ubuntu2210"
-            ],
-            "scripts": [
-                "{{ template_dir }}/scripts/ubuntu_template_cleanup.sh"
-            ],
-            "type": "shell"
-        },
-        {
-            "only": [
                 "Windows2016"
             ],
             "type": "powershell",

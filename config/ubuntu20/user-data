@@ -7,11 +7,11 @@ autoinstall:
     mirror-selection:
       primary:
       - country-mirror
-      - arches:
+      - arches: &id001
         - amd64
         - i386
-        uri: http://archive.ubuntu.com/ubuntu
-      - arches:
+        uri: http://archive.ubuntu.com/ubuntu/
+      - arches: &id002
         - s390x
         - arm64
         - armhf
@@ -20,13 +20,18 @@ autoinstall:
         - riscv64
         uri: http://ports.ubuntu.com/ubuntu-ports
     preserve_sources_list: false
+    security:
+    - arches: *id001
+      uri: http://security.ubuntu.com/ubuntu/
+    - arches: *id002
+      uri: http://ports.ubuntu.com/ubuntu-ports
   codecs:
     install: false
   drivers:
     install: false
   identity:
-    hostname: ubuntu-server
-    password: $6$GnhK5QNA7r2bvUcW$hS0/Cj/iSMDxHEYwJdDOhAtLYmNPlpxsnju1ZM3/cVmz3ZriPL3G4G60/13v5ZOr8gWY59UzZQ3JpMb5uNx2u1
+    hostname: test01
+    password: $6$7MjCMsqblfGk9XmE$/ogIZQLtHfIX/dPKji620rNW/fLCGqcnNCNHg3k/1GrSkTMi7qt5ajAAbjlsZ4lLHG7KiQ5vkjs8N5pys8wu61
     realname: ubuntu
     username: ubuntu
   kernel:
@@ -69,7 +74,7 @@ autoinstall:
       type: partition
       id: partition-0
     - device: disk-sda
-      size: 2147483648
+      size: 1902116864
       wipe: superblock
       number: 2
       preserve: false
@@ -84,12 +89,12 @@ autoinstall:
       type: format
       id: format-0
     - device: disk-sda
-      size: 30061625344
+      size: 19569573888
       wipe: superblock
       number: 3
       preserve: false
       grub_device: false
-      offset: 2149580800
+      offset: 1904214016
       path: /dev/sda3
       type: partition
       id: partition-2
@@ -101,7 +106,7 @@ autoinstall:
       id: lvm_volgroup-0
     - name: ubuntu-lv
       volgroup: lvm_volgroup-0
-      size: 15028191232B
+      size: 10737418240B
       wipe: superblock
       preserve: false
       path: /dev/ubuntu-vg/ubuntu-lv

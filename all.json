@@ -39,7 +39,7 @@
             "ssh_password": "{{user `ssh_password`}}",
             "ssh_username": "{{user `ssh_username`}}",
             "storage": [{
-                "disk_size": "40960",
+                "disk_size": "20480",
                 "disk_thin_provisioned": true
             }],
             "type": "vsphere-iso",
